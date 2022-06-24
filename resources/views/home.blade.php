@@ -2,9 +2,8 @@
 
 @section('content')
     <div class="container-fluid content">
-        {{--        @foreach ($Analyze as $user)--}}
-        {{--            --}}
-        {{--            <p>This is user {{ $user->id }}</p>--}}
-        {{--        @endforeach--}}
+                @foreach (Auth::user()->analyzes as $analyze)
+                    <div>{{ $analyze->user_id }}</div>
+                @endforeach
     </div>
 @endsection
