@@ -10250,30 +10250,53 @@ textarea.form-control-lg {
   }
 }
 body {
-  display: flex;
-  flex-direction: column;
-  font-family: "JetBrains Mono";
+  font-family: "Montserrat";
 }
 
 .head {
   background-color: #00B4D8;
 }
+.head .navbar-brand {
+  margin: 0;
+}
 .head .navbar-text {
-  font-size: 2.5em;
-  vertical-align: center;
+  font-size: 1.5em;
   cursor: default;
+  margin-right: auto;
 }
 
 .content {
   background-color: #CAF0F8;
   height: 90vh;
+  align-items: center;
+  justify-content: center;
 }
-.content .info {
-  font-size: 4em;
-  font-family: "JetBrains Mono ExtraBold";
+.content .info h1, .content .info .h1 {
+  font-weight: bold;
+}
+.content .info .to_analysis {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: white;
+  border-radius: 0.5em;
+}
+.content .info img {
+  width: auto;
+}
+.content .home_buttons {
+  margin: 1.5em 1.5em;
 }
 
 .footer {
   background-color: #00B4D8;
   padding: 2em 2em;
+  color: white;
+  cursor: default;
+}
+.footer a {
+  font-size: 0.7em;
+  text-decoration: none;
+}
+.footer .team {
+  font-size: 1em;
 }

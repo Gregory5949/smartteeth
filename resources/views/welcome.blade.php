@@ -1,11 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid content">
-        <div class="info">
-            Сайт для определения состояния зубов по фото
+    <div class="container-fluid content d-flex flex-row">
+        <div class="info m-4">
+            <h1 class="m-3 user-select-none">SmartTeeth: на страже зубов</h1>
+            <h4 class="m-3 user-select-none">Интелектуальная технология распознования стоматологических заболеваний у детей</h4>
+            <button class="btn btn-info m-3 to_analysis" type="button">Начать диагностику</button>
         </div>
-        <button class="btn to_analysis" type="button">Перейти к анализу</button>
+        <img src="foto/5507734.svg" class="img-fluid d-none d-lg-block  teeth">
     </div>
 @endsection
 

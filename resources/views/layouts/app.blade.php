@@ -7,15 +7,20 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body class="d-flex flex-column">
 
 <nav class="navbar head">
     <div class="container-fluid">
-        <span class="navbar-text text-light">SmartTeeth</span>
+        <div class="navbar-brand">
+            <img src="foto/mini_logo.svg" width="80" height="60" class="d-inline-block">
+        </div>
+        <span class="navbar-text text-light user-select-none">SmartTeeth</span>
         @guest
             <button class="btn text-light nav-item" type="button" onclick="window.location.href='/dashboard'">
                 Log in
@@ -33,8 +38,13 @@
 
 @yield('content')
 
-<div class="container-fluid justify-content-between footer">
-    <span>УФО ХАКАТОН КЕЙС "ЗУБЫ"<br>ЦИФРОВОЙ ПРОРЫВ СЕЗОН:ИИ</span>
+<div class="container-fluid footer d-flex flex-row justify-content-between">
+    <span class="user-select-none">УФО ХАКАТОН КЕЙС "ЗУБЫ"<br>ЦИФРОВОЙ ПРОРЫВ СЕЗОН:ИИ<br>
+        <a class="link-light" href="https://www.freepik.com/vectors/teeth-cartoon">Teeth cartoon vector created by freepik - www.freepik.com</a>
+    </span>
+    <a class="link-light team" href="/about">О проекте</a>
+
+
 </div>
 
 </body>

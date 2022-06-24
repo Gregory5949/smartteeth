@@ -9,28 +9,54 @@ $white: #CAF0F8;
 
 
 body{
-    display: flex;
-    flex-direction: column;
-    font-family: "JetBrains Mono";
+    font-family: 'Montserrat';
 }
 .head{
     background-color: $gray;
+    .navbar-brand {
+        margin: 0;
+    }
     .navbar-text{
-        font-size: 2.5em;
-        vertical-align: center;
-        cursor: default;
+        font-size: 1.5em;
+        margin-right: auto;
     }
 }
 .content{
     background-color: $white;
     height: 90vh;
+    align-items: center;
+    justify-content: center;
     .info{
-        font-size: 4em;
-        font-family: "JetBrains Mono ExtraBold";
+        h1{
+            font-weight: bold;
+        }
+        .to_analysis{
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            border-radius: .5em;
+        }
+        img{
+            width: auto;
+        }
+    }
+
+    .home_buttons{
+        margin: 1.5em 1.5em;
     }
 }
 
 .footer{
     background-color: $gray;
     padding: 2em 2em;
+    color: white;
+    a{
+        font-size: 0.7em;
+        text-decoration: none;
+    }
+    .team{
+        font-size: 1em;
+    }
 }
+
+
