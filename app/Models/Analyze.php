@@ -23,4 +23,9 @@ class Analyze extends Model
      {
         return $this->belongsTo(User::class);
      }
+
+     public function patients()
+    {
+     return $this->belongsTo(Patient::class);
+    }
 }
