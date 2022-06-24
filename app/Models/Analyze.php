@@ -24,7 +24,7 @@ class Analyze extends Model
         return $this->belongsTo(User::class);
      }
 
-     public function patients()
+     public function patient()
     {
      return $this->belongsTo(Patient::class);
     }

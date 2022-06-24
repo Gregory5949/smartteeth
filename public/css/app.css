@@ -10261,7 +10261,6 @@ body {
 }
 .head .navbar-text {
   font-size: 1.5em;
-  cursor: default;
   margin-right: auto;
 }
 
@@ -10270,6 +10269,7 @@ body {
   height: 90vh;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 .content .info h1, .content .info .h1 {
   font-weight: bold;
@@ -10283,15 +10283,18 @@ body {
 .content .info img {
   width: auto;
 }
-.content .home_buttons {
-  margin: 1.5em 1.5em;
+.content .list_pat {
+  overflow-y: scroll;
+  height: 70vh;
+}
+.content .list_pat .delete {
+  margin-right: auto;
 }
 
 .footer {
   background-color: #00B4D8;
   padding: 2em 2em;
   color: white;
-  cursor: default;
 }
 .footer a {
   font-size: 0.7em;

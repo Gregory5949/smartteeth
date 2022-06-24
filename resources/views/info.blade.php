@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    sfaf
+    <div class="container-fluid content">
+
+    </div>
 @endsection

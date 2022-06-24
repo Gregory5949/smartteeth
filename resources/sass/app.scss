@@ -21,11 +21,15 @@ body{
         margin-right: auto;
     }
 }
+
 .content{
     background-color: $white;
     height: 90vh;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+
+
     .info{
         h1{
             font-weight: bold;
@@ -41,8 +45,13 @@ body{
         }
     }
 
-    .home_buttons{
-        margin: 1.5em 1.5em;
+
+    .list_pat{
+        overflow-y: scroll;
+        height: 70vh;
+        .delete{
+            margin-right: auto;
+        }
     }
 }
 
