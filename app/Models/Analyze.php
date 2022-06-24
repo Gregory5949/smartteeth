@@ -12,10 +12,15 @@ class Analyze extends Model
     use SoftDeletes;
 
     protected $fillable = [
-            'source_photo',
-            'predict_xml',
-            'predict_photo',
-            'user_id',
-            'patient_id'
-        ];
+        'source_photo',
+        'predict_xml',
+        'predict_photo',
+        'user_id',
+        'patient_id'
+    ];
+
+     public function user()
+     {
+        return $this->belongsTo(User::class);
+     }
 }
