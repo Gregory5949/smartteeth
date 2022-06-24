@@ -2,3 +2,35 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 @import '~bootstrap/scss/bootstrap';
+
+$gray: #00B4D8;
+$white: #CAF0F8;
+
+
+
+body{
+    display: flex;
+    flex-direction: column;
+    font-family: "JetBrains Mono";
+}
+.head{
+    background-color: $gray;
+    .navbar-text{
+        font-size: 2.5em;
+        vertical-align: center;
+        cursor: default;
+    }
+}
+.content{
+    background-color: $white;
+    height: 90vh;
+    .info{
+        font-size: 4em;
+        font-family: "JetBrains Mono ExtraBold";
+    }
+}
+
+.footer{
+    background-color: $gray;
+    padding: 2em 2em;
+}

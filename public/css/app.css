@@ -10249,3 +10249,31 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: "JetBrains Mono";
+}
+
+.head {
+  background-color: #00B4D8;
+}
+.head .navbar-text {
+  font-size: 2.5em;
+  vertical-align: center;
+  cursor: default;
+}
+
+.content {
+  background-color: #CAF0F8;
+  height: 90vh;
+}
+.content .info {
+  font-size: 4em;
+  font-family: "JetBrains Mono ExtraBold";
+}
+
+.footer {
+  background-color: #00B4D8;
+  padding: 2em 2em;
+}
