@@ -21,4 +21,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/info', function () {
+    return view("info");
+} )->name('info');
+
 Route::resource('analyzes', AnalyzeController::class);

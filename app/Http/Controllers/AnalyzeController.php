@@ -42,7 +42,7 @@ class AnalyzeController extends Controller
         ]);
 
         if (($file = $request->File("image")) != null) {
-            $data["source_photo"] = $file->store('public/input_images');
+            $data["source_photo"] = Storage::url($file->store('public/input_images'));
         }
 
         $data["user_id"] = Auth::user()->id;
