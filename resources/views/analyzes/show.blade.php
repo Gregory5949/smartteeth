@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container-fluid content">
+        <div class="bg-light m-2 p-2 show_predict">
         <div class="m-3">ФИО: {{$analyze->patient->name}}</div>
         <div class="m-3">Дата анализа: {{ date('d.m.Y H:m:s', strtotime($analyze->created_at))}}</div>
         <div class="m-3">Результат анализа: {{$analyze->predict_photo}}</div>
@@ -11,9 +12,10 @@
             <form class="d-inline" action="{{ route('analyzes.destroy', $analyze->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button class="btn btn-outline-danger m-3">Удалить запись</button>
+                <button class="btn btn-outline-danger m-3">Архивировать</button>
             </form>
         @endif
+    </div>
 
 
     </div>

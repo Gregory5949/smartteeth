@@ -39,8 +39,8 @@
 @yield('content')
 
 <div class="container-fluid footer d-flex flex-row justify-content-between">
-    <span class="user-select-none">УФО ХАКАТОН КЕЙС "ЗУБЫ"<br>ЦИФРОВОЙ ПРОРЫВ СЕЗОН:ИИ<br>
-        <a class="link-light" href="https://www.freepik.com/vectors/teeth-cartoon">Teeth cartoon vector created by freepik - www.freepik.com</a>
+    <span class="user-select-none d-none d-sm-block">УФО ХАКАТОН КЕЙС "ЗУБЫ"<br>ЦИФРОВОЙ ПРОРЫВ СЕЗОН:ИИ<br>
+        <a class="link-light l" href="https://www.freepik.com/vectors/teeth-cartoon">Teeth cartoon vector created by freepik - www.freepik.com</a>
     </span>
     <a class="link-light team" href="/info">О проекте</a>
 </div>

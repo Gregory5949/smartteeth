@@ -62,15 +62,23 @@ body{
             background-color: black;
         }
     }
+
+    .show_predict{
+        font-weight: bolder;
+    }
 }
 
 .footer{
     background-color: $gray;
     padding: 2em 2em;
     color: white;
+    font-size: 1em;
     a{
-        font-size: 0.7em;
         text-decoration: none;
+
+    }
+    .l{
+        font-size: 0.8em;
     }
     .team{
         font-size: 1em;
