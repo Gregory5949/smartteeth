@@ -41,6 +41,7 @@
 
 <div class="container-fluid footer d-flex flex-row justify-content-between">
     <span class="user-select-none d-none d-sm-block">УФО ХАКАТОН КЕЙС "ЗУБЫ"<br>ЦИФРОВОЙ ПРОРЫВ СЕЗОН:ИИ<br>
+        MYASNIKI TEAM<br>
         <a class="link-light l" href="https://www.freepik.com/vectors/teeth-cartoon">Teeth cartoon vector created by freepik - www.freepik.com</a>
     </span>
     <div>
