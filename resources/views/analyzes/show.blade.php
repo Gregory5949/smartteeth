@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid content">
         <div class="m-3">ФИО: {{$analyze->patient->name}}</div>
-        <div class="m-3">Дата анализа: {{ date('d.m.Y', strtotime($analyze->created_at))}}</div>
+        <div class="m-3">Дата анализа: {{ date('d.m.Y H:m:s', strtotime($analyze->created_at))}}</div>
         <div class="m-3">Результат анализа: {{$analyze->predict_photo}}</div>
         <div class="m-3">Количество зубов с кариесом: {{$analyze->caries_count}}</div>
         <div class="m-3">Ссылка для скачивания: {{$analyze->predict_xml}}</div>
