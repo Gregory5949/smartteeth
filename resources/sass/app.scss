@@ -49,8 +49,9 @@ body{
 
 
     .list_pat{
-        overflow-y: scroll;
+        overflow-y: auto;
         height: 70vh;
+        font-weight: bolder;
         .delete{
             margin-right: auto;
         }

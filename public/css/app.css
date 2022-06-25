@@ -10284,8 +10284,9 @@ body {
   width: auto;
 }
 .content .list_pat {
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 70vh;
+  font-weight: bolder;
 }
 .content .list_pat .delete {
   margin-right: auto;

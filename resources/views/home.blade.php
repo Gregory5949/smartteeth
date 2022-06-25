@@ -40,7 +40,14 @@
                 <a href="/analyzes/{{$analyze->id}}" class="list-group-item d-flex flex-column justify-content-end">
                     ФИО: {{ $analyze->patient->name }},
                     Дата рождения: {{ date('d.m.Y', strtotime($analyze->patient->date_of_birth))}},
-                    Дата анализа: {{ date('d.m.Y', strtotime($analyze->created_at))}}
+                    Дата анализа: {{ date('d.m.Y H:m:s', strtotime($analyze->created_at))}},
+                    @if($analyze->caries_count > 0)
+                        <div style="color: red" class="caries">Количество зубов с кариесом: {{$analyze->caries_count}}</div>
+                    @else
+                        <div style="color: green" class="caries">Количество зубов с кариесом: {{$analyze->caries_count}}</div>
+                    @endif
+
+
                     @if ($analyze->user_id == Auth::id())
                         <form class="d-inline" action="{{ route('analyzes.destroy', $analyze->id) }}" method="POST">
                             @csrf
