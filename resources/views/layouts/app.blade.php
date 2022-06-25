@@ -20,7 +20,7 @@
         <div class="navbar-brand">
             <img src="/foto/mini_logo.svg" onclick="window.location.href='/'" width="80" height="60" class="d-inline-block">
         </div>
-        <span class="navbar-text text-light user-select-none" onclick="window.location.href='/'">SmartTeeth</span>
+        <span class="navbar-text text-light" onclick="window.location.href='/'">SmartTeeth</span>
         @guest
             <button class="btn text-light nav-item" type="button" onclick="window.location.href='/login'">
                 Войти
@@ -39,8 +39,8 @@
 @yield('content')
 
 <div class="container-fluid footer d-flex flex-row justify-content-between">
-    <span class="user-select-none">УФО ХАКАТОН КЕЙС "ЗУБЫ"<br>ЦИФРОВОЙ ПРОРЫВ СЕЗОН:ИИ<br>
-        <a class="link-light" href="https://www.freepik.com/vectors/teeth-cartoon">Teeth cartoon vector created by freepik - www.freepik.com</a>
+    <span class="user-select-none d-none d-sm-block">УФО ХАКАТОН КЕЙС "ЗУБЫ"<br>ЦИФРОВОЙ ПРОРЫВ СЕЗОН:ИИ<br>
+        <a class="link-light l" href="https://www.freepik.com/vectors/teeth-cartoon">Teeth cartoon vector created by freepik - www.freepik.com</a>
     </span>
     <a class="link-light team" href="/info">О проекте</a>
 </div>

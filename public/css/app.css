@@ -10262,6 +10262,7 @@ body {
 .head .navbar-text {
   font-size: 1.5em;
   margin-right: auto;
+  cursor: pointer;
 }
 
 .content {
@@ -10294,15 +10295,21 @@ body {
 .content input #file-uploader-button {
   background-color: black;
 }
+.content .show_predict {
+  font-weight: bolder;
+}
 
 .footer {
   background-color: #00B4D8;
   padding: 2em 2em;
   color: white;
+  font-size: 1em;
 }
 .footer a {
-  font-size: 0.7em;
   text-decoration: none;
+}
+.footer .l {
+  font-size: 0.8em;
 }
 .footer .team {
   font-size: 1em;
