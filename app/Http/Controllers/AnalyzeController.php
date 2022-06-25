@@ -6,6 +6,8 @@ use App\Models\Analyze;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 class AnalyzeController extends Controller
 {
@@ -41,7 +43,7 @@ class AnalyzeController extends Controller
 
         $data = $request->validate([
             'patient_id' => 'required|integer',
-            'photo' => 'image'
+            'photo' => 'required|image'
         ]);
 
         if (($file = $request->File("photo")) != null) {
@@ -50,11 +52,35 @@ class AnalyzeController extends Controller
 
         $data["user_id"] = Auth::id();
 
+        $process = new Process(['python3', '/path/to/script.py', $data["source_photo"]]);
+        $process->run();
+
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        $output = $process->getOutput();
+
+        return $output;
+
         $data["predict_photo"] = "WE LOVE PYTHON";
         $data["caries_count"] = 67;
         $data["count"] = 67;
 
         $analyze = Analyze::create($data);
+
+        $to  = $analyze->patient->parent_email;
+        $subject = "SmartTeeth. Анализ полости рта";
+
+        $message = '<p>Уважаемый(ая) ' . $analyze->patient->parent_name . '!</p> <p>Ваш ребенок ' . $analyze->patient->name . ' прошёл автоматизированную диагностику полости рта. Нейронная сеть показала следующий результат:</p>';
+        $message .= '<ul><li>Количество распознанных зубов: ' . $analyze->count . '</li><li>Количество зубов, на которых обнаружен кариес: ' . $analyze->caries_count . '</li></ul>';
+        $message .= '<p>Подробности вы можете узнать у лечащего врача ' . $analyze->user->name . '</p>';
+
+        $headers  = "Content-type: text/html; charset=windows-1251 \r\n";
+        $headers .= "From: SmartTeeth <smartteeth@nizamovtimur.ru>\r\n";
+        $headers .= "Reply-To: smartteeth@nizamovtimur.ru\r\n";
+
+        mail($to, $subject, $message, $headers);
 
         return redirect()->route('analyzes.show', ['analyze' => $analyze]);
     }
