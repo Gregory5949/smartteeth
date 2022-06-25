@@ -39,9 +39,8 @@
             @foreach ($analyzes as $analyze)
                 <a href="/analyzes/{{$analyze->id}}" class="list-group-item d-flex flex-column justify-content-end">
                     ФИО: {{ $analyze->patient->name }},
-                    Дата рождения: {{ date('d.m.Y', strtotime($analyze->patient->date_of_birth ))}},
-                    Дата анализа: {{$analyze->patient->created_at}}
-                    {{ $analyze->created_at }}
+                    Дата рождения: {{ date('d.m.Y', strtotime($analyze->patient->date_of_birth))}},
+                    Дата анализа: {{ date('d.m.Y', strtotime($analyze->patient->created_at))}}
                     <button class="btn btn-outline-danger btn-sm delete">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
