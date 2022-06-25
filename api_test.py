@@ -10,8 +10,8 @@ headers = {
     "Content" : "application/json"
 }
 
-# req = requests.get(host + "/api/analyzes/1", headers = headers)
-req = requests.post(host + "/api/analyzes", data = {"patient_id" : 1}, files = {'photo': open('test.jpg', 'rb')}, headers = headers)
+req = requests.get(host + "/api/analyzes/12", headers = headers)
+# req = requests.post(host + "/api/analyzes", data = {"patient_id" : 1}, files = {'photo': open('test.jpg', 'rb')}, headers = headers)
 
 print(req.text)
 
