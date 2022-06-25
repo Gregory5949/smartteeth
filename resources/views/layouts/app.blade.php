@@ -18,7 +18,7 @@
 <nav class="navbar head">
     <div class="container-fluid">
         <div class="navbar-brand">
-            <img src="foto/mini_logo.svg" onclick="window.location.href='/'" width="80" height="60" class="d-inline-block">
+            <img src="/foto/mini_logo.svg" onclick="window.location.href='/'" width="80" height="60" class="d-inline-block">
         </div>
         <span class="navbar-text text-light user-select-none" onclick="window.location.href='/'">SmartTeeth</span>
         @guest
