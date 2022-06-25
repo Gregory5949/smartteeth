@@ -10295,9 +10295,6 @@ body {
 .content input #file-uploader-button {
   background-color: black;
 }
-.content .show_predict {
-  font-weight: bolder;
-}
 .content ol li {
   margin-bottom: 1em;
 }
