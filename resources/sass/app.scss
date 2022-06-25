@@ -11,7 +11,7 @@ $white: #CAF0F8;
 
 }
 body{
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', sans-serif;
 }
 .head{
     background-color: $gray;
@@ -27,7 +27,7 @@ body{
 
 .content{
     background-color: $white;
-    height: 90vh;
+    min-height: 90vh;
     align-items: center;
     justify-content: center;
     overflow: hidden;
@@ -66,6 +66,14 @@ body{
 
     .show_predict{
         font-weight: bolder;
+    }
+    ol{
+        li{
+            margin-bottom: 1em;
+        }
+    }
+    .code{
+        font-family: Courier New, serif;
     }
 }
 

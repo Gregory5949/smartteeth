@@ -18,12 +18,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/info', function () {
     return view("info");
 } )->name('info');
+
+Route::get('/api', function () {
+    return view("api");
+} )->name('api');
 
 Route::resource('analyzes', App\Http\Controllers\AnalyzeController::class);

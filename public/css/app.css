@@ -10250,7 +10250,7 @@ textarea.form-control-lg {
   }
 }
 body {
-  font-family: "Montserrat";
+  font-family: "Montserrat", sans-serif;
 }
 
 .head {
@@ -10267,7 +10267,7 @@ body {
 
 .content {
   background-color: #CAF0F8;
-  height: 90vh;
+  min-height: 90vh;
   align-items: center;
   justify-content: center;
   overflow: hidden;
@@ -10297,6 +10297,12 @@ body {
 }
 .content .show_predict {
   font-weight: bolder;
+}
+.content ol li {
+  margin-bottom: 1em;
+}
+.content .code {
+  font-family: Courier New, serif;
 }
 
 .footer {
