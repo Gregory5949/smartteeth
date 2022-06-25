@@ -16,6 +16,7 @@ class AnalyzeResource extends JsonResource
     {
         return [
             'created_at' => $this->created_at,
+            'count' => $this->count,
             'caries_count' => $this->caries_count,
             'patient' => $this->patient,
             'predict_photo' => $this->predict_photo,
