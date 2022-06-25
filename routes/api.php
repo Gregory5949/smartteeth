@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnalyzeController;
+use App\Http\Resources\AnalyzeResource;
 use App\Models\Analyze;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +25,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('analyzes/{id}', function ($id) {
         $analyze = Analyze::find($id);
         if ($analyze->user_id == Auth::id()) {
-            return $analyze;
+            return new AnalyzeResource($analyze);
         }
     });
     Route::post('analyzes', [AnalyzeController::class, 'store']);
