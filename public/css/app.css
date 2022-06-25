@@ -10290,6 +10290,9 @@ body {
 .content .list_pat .delete {
   margin-right: auto;
 }
+.content input #file-uploader-button {
+  background-color: black;
+}
 
 .footer {
   background-color: #00B4D8;

@@ -7,7 +7,9 @@ $gray: #00B4D8;
 $white: #CAF0F8;
 
 
+.alert{
 
+}
 body{
     font-family: 'Montserrat';
 }
@@ -51,6 +53,12 @@ body{
         height: 70vh;
         .delete{
             margin-right: auto;
+        }
+    }
+
+    input{
+        #file-uploader-button{
+            background-color: black;
         }
     }
 }
