@@ -11,8 +11,27 @@
 
         <div class="container-fluid d-lg-flex flex-row home_nav">
         <button class="btn btn-info m-3" onclick="window.location.href='/analyzes/create'">Провести анализ</button>
-        <a tabindex="0" class="btn btn-info m-3 token" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Токен" data-content="s222" onclick="create_token()">Выдать токен для робота</a>
-        <form action="" class="input-group m-3 d-flex w-auto" method="get">
+
+
+            <button type="button" class="btn btn-info m-3 token" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Выдать токен для робота
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade " id="exampleModal" tabindex="-1" data-bs-backdrop="true" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Персональный токен</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form action="" class="input-group m-3 d-flex w-auto" method="get">
             <input type="search" name="query" id="form1" class="form-control d-block" placeholder="Поиск по ФИО"/>
             <button type="submit" class="btn btn-info search">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -60,26 +79,6 @@
             </div>
     </div>
 
-    <script>
-        function create_token() {
-            const data = {
-                name: 'Token Name',
-                scopes: []
-            };
-
-            axios.post('/oauth/personal-access-tokens', data)
-                .then(response => {
-                    jw = document.getElementsByClassName('token')[0];
-                    jw.setAttribute('data-content','sss')
-                    // jw.innerHTML = `<p><b>Не сообщайте данный токен никому, он нужен для подключения робота к анализатору.</b><br>
-                    // Токен: <i>Bearer ${response.data.accessToken}</i></p>`;
-                })
-                .catch(response => {
-                    console.log(response.data);
-                    alert('Токен не удалось создать. Обратитесь к системному администратору.');
-                });
-        }
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"></script>
