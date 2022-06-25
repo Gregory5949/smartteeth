@@ -9,26 +9,34 @@
             @endif
         </div>
 
-        <div class="container-fluid  home_nav">
+        <div class="container-fluid d-lg-flex flex-row home_nav">
         <button class="btn btn-info m-3" onclick="window.location.href='/analyzes/create'">Провести анализ</button>
         <button class="btn btn-info m-3" onclick="create_token()">Выдать токен для робота</button>
-
-        <div class="input-group m-3 d-inline-block">
-            <div class="form-outline">
-                <input type="search" id="form1" class="form-control" placeholder="Поиск по ФИО"/>
-            </div>
-            <button type="button" class="btn btn-info search">
+        <form action="" class="input-group m-3 d-flex w-auto" method="get">
+            <input type="search" name="query" id="form1" class="form-control d-block" placeholder="Поиск по ФИО"/>
+            <button type="submit" class="btn btn-info search">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
                     <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
                 </svg>
             </button>
+        </form>
         </div>
-        </div>
-
 
         <div class="list-group m-3 list_pat">
-            @foreach (Auth::user()->analyzes as $analyze)
+            @php
+            $analyzes = Auth::user()->analyzes;
+            if (isset($_GET["query"])) {
+                $query = $_GET["query"];
+                $patients = \App\Models\Patient::select("id")->Where('name','like','%' . $query . '%');
+                $analyzes = \App\Models\Analyze::select("*")->WhereIn('patient_id', $patients)->get();
+                if(count($analyzes) == 0) {
+                    echo "По запросу \"" . $query . "\" ничего не найдено.";
+                }
+                else echo "По запросу \"" . $query . "\" найдены следующие анализы:";
+            }
+            @endphp
+            @foreach ($analyzes as $analyze)
                 <a href="#" class="list-group-item d-flex flex-column justify-content-end">
                     ФИО: {{ $analyze->patient->name }},
                     Дата рождения: {{ $analyze->patient->date_of_birth }}
