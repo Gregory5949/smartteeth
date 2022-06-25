@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AnalyzeController;
+use App\Models\Analyze;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +21,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:api')->group(function () {
-    Route::get('analyzes/{id}', [\App\Http\Controllers\AnalyzeController::class, 'show']);
-    Route::post('analyzes', [\App\Http\Controllers\AnalyzeController::class, 'store']);
+    Route::get('analyzes/{id}', function ($id) {
+        $analyze = Analyze::find($id);
+        if ($analyze->user_id == Auth::id()) {
+            return $analyze;
+        }
+    });
+    Route::post('analyzes', [AnalyzeController::class, 'store']);
 });

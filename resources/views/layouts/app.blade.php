@@ -18,16 +18,16 @@
 <nav class="navbar head">
     <div class="container-fluid">
         <div class="navbar-brand">
-            <img src="foto/mini_logo.svg" width="80" height="60" class="d-inline-block">
+            <img src="foto/mini_logo.svg" onclick="window.location.href='/'" width="80" height="60" class="d-inline-block">
         </div>
-        <span class="navbar-text text-light user-select-none">SmartTeeth</span>
+        <span class="navbar-text text-light user-select-none" onclick="window.location.href='/'">SmartTeeth</span>
         @guest
-            <button class="btn text-light nav-item" type="button" onclick="window.location.href='/dashboard'">
-                Log in
+            <button class="btn text-light nav-item" type="button" onclick="window.location.href='/login'">
+                Войти
             </button>
         @endguest
         @auth
-            <button class="btn text-light nav-item" type="button" onclick="window.location.href='/dashboard'">
+            <button class="btn text-light nav-item" type="button" onclick="window.location.href='/home'">
                 <svg width="2.5em" height="2.5em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                 </svg>

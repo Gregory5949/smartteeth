@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,4 +26,4 @@ Route::get('/info', function () {
     return view("info");
 } )->name('info');
 
-Route::resource('analyzes', AnalyzeController::class);
+Route::resource('analyzes', App\Http\Controllers\AnalyzeController::class);

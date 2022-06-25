@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Analyze;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class AnalyzeController extends Controller
 {
@@ -32,7 +35,7 @@ class AnalyzeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request) // TODO: PYTHON, EMAIL TO PARENT, REST API TESTING
     {
         if (!Auth::check()) abort(401, "Authentication required");
 
@@ -45,7 +48,7 @@ class AnalyzeController extends Controller
             $data["source_photo"] = Storage::url($file->store('public/input_images'));
         }
 
-        $data["user_id"] = Auth::user()->id;
+        $data["user_id"] = Auth::id();
 
         $data["predict_xml"] = "I LOVE PYTHON";
         $data["predict_photo"] = "WE LOVE PYTHON";

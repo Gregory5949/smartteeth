@@ -3,9 +3,15 @@
 @section('content')
     <div class="container-fluid content">
 
+        <div class="alert alert-success" role="alert">
+            @if ($message = Session::get('success'))
+            {{ $message }}
+            @endif
+        </div>
+
         <div class="container-fluid  home_nav">
-        <button class="btn btn-info m-3">Провести анализ</button>
-        <button class="btn btn-info m-3">Выдать токен для робота</button>
+        <button class="btn btn-info m-3" onclick="window.location.href='/analyzes/create'">Провести анализ</button>
+        <button class="btn btn-info m-3" onclick="create_token()">Выдать токен для робота</button>
 
         <div class="input-group m-3 d-inline-block">
             <div class="form-outline">
@@ -37,4 +43,25 @@
             @endforeach
             </div>
     </div>
+
+    <script>
+        function create_token() {
+            const data = {
+                name: 'Token Name',
+                scopes: []
+            };
+
+            axios.post('/oauth/personal-access-tokens', data)
+                .then(response => {
+                    console.log(response.data.accessToken);
+                    alert('Токен создан');
+                    jw = document.getElementsByClassName('alert')[0];
+                    jw.innerHTML = `<p><b>Не сообщайте данный токен никому, он нужен для подключения робота к анализатору.</b><br>Токен: <i>Bearer ${response.data.accessToken}</i></p>`;
+                })
+                .catch(response => {
+                    console.log(response.data);
+                    alert('Токен не удалось создать');
+                });
+        }
+    </script>
 @endsection
