@@ -35,16 +35,16 @@ class AnalyzeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request) // TODO: PYTHON, EMAIL TO PARENT, REST API TESTING
+    public function store(Request $request) // TODO: PYTHON, EMAIL TO PARENT
     {
         if (!Auth::check()) abort(401, "Authentication required");
 
         $data = $request->validate([
             'patient_id' => 'required|integer',
-            'photo' => 'photo'
+            'photo' => 'image'
         ]);
 
-        if (($file = $request->File("image")) != null) {
+        if (($file = $request->File("photo")) != null) {
             $data["source_photo"] = Storage::url($file->store('public/input_images'));
         }
 
@@ -52,10 +52,11 @@ class AnalyzeController extends Controller
 
         $data["predict_xml"] = "I LOVE PYTHON";
         $data["predict_photo"] = "WE LOVE PYTHON";
+        $data["caries_count"] = 67;
 
         $analyze = Analyze::create($data);
 
-        return redirect()->route('analyzes.show')->with('analyze');
+        return redirect()->route('analyzes.show', ['analyze' => $analyze]);
     }
 
     /**
