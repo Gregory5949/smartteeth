@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('analyzes', function (Blueprint $table) {
             $table->id();
             $table->text('source_photo');
-            $table->text('predict_xml');
             $table->text('predict_photo');
             $table->unsignedInteger('caries_count');
             $table->unsignedBigInteger('patient_id');

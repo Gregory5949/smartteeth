@@ -50,7 +50,6 @@ class AnalyzeController extends Controller
 
         $data["user_id"] = Auth::id();
 
-        $data["predict_xml"] = "I LOVE PYTHON";
         $data["predict_photo"] = "WE LOVE PYTHON";
         $data["caries_count"] = 67;
         $data["count"] = 67;

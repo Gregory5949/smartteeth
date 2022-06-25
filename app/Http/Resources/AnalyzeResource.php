@@ -19,8 +19,7 @@ class AnalyzeResource extends JsonResource
             'count' => $this->count,
             'caries_count' => $this->caries_count,
             'patient' => $this->patient,
-            'predict_photo' => $this->predict_photo,
-            'predict_xml' => $this->predict_xml
+            'predict_photo' => $this->predict_photo
         ];
     }
 }

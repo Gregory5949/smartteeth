@@ -13,7 +13,6 @@ class Analyze extends Model
 
     protected $fillable = [
         'source_photo',
-        'predict_xml',
         'predict_photo',
         'user_id',
         'patient_id',
