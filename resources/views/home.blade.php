@@ -9,14 +9,12 @@
             @endif
         </div>
 
-        <div class="container-fluid  home_nav">
+        <div class="container-fluid d-lg-flex flex-row home_nav">
         <button class="btn btn-info m-3" onclick="window.location.href='/analyzes/create'">Провести анализ</button>
         <button class="btn btn-info m-3" onclick="create_token()">Выдать токен для робота</button>
 
-        <div class="input-group m-3 d-inline-block">
-            <div class="form-outline">
-                <input type="search" id="form1" class="form-control" placeholder="Поиск по ФИО"/>
-            </div>
+        <div class="input-group m-3 d-flex w-auto">
+            <input type="search" id="form1" class="form-control d-block" placeholder="Поиск по ФИО"/>
             <button type="button" class="btn btn-info search">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
@@ -56,7 +54,8 @@
                     console.log(response.data.accessToken);
                     alert('Токен создан');
                     jw = document.getElementsByClassName('alert')[0];
-                    jw.innerHTML = `<p><b>Не сообщайте данный токен никому, он нужен для подключения робота к анализатору.</b><br>Токен: <i>Bearer ${response.data.accessToken}</i></p>`;
+                    jw.innerHTML = `<p><b>Не сообщайте данный токен никому, он нужен для подключения робота к анализатору.</b><br>
+                    Токен: <i>Bearer ${response.data.accessToken}</i></p>`;
                 })
                 .catch(response => {
                     console.log(response.data);
