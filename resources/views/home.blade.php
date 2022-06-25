@@ -55,7 +55,7 @@
                 else echo "По запросу \"" . $query . "\" найдены следующие анализы:";
             }
             @endphp
-            @foreach ($analyzes as $analyze)
+            @foreach ($analyzes->sortByDesc('caries_count') as $analyze)
                 <a href="/analyzes/{{$analyze->id}}" class="list-group-item d-flex flex-column justify-content-end">
                     ФИО: {{ $analyze->patient->name }},
                     Дата рождения: {{ date('d.m.Y', strtotime($analyze->patient->date_of_birth))}},
