@@ -46,13 +46,15 @@ class AnalyzeController extends Controller
             'photo' => 'required|image'
         ]);
 
+        $local_file = "";
         if (($file = $request->File("photo")) != null) {
-            $data["source_photo"] = Storage::url($file->store('public/input_images'));
+            $local_file = $file->store('public/input_images');
+            $data["source_photo"] = Storage::url($local_file);
         }
 
         $data["user_id"] = Auth::id();
 
-        $process = new Process(['python3', '/path/to/script.py', $data["source_photo"]]);
+        $process = new Process(['python3', '/home/timur/git/smartteeth/ai/ai.py', $local_file]);
         $process->run();
 
         if (!$process->isSuccessful()) {
