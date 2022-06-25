@@ -10262,6 +10262,7 @@ body {
 .head .navbar-text {
   font-size: 1.5em;
   margin-right: auto;
+  cursor: pointer;
 }
 
 .content {

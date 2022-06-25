@@ -3,11 +3,11 @@
 @section('content')
     <div class="container-fluid content">
         <div class="bg-light m-2 p-2 show_predict">
-        <div class="m-3">ФИО: {{$analyze->patient->name}}</div>
-        <div class="m-3">Дата анализа: {{ date('d.m.Y H:m:s', strtotime($analyze->created_at))}}</div>
-        <div class="m-3">Результат анализа: {{$analyze->predict_photo}}</div>
-        <div class="m-3">Количество зубов с кариесом: {{$analyze->caries_count}}</div>
-        <div class="m-3">Ссылка для скачивания: {{$analyze->predict_xml}}</div>
+        <div class="user-select-none m-3">ФИО: {{$analyze->patient->name}}</div>
+        <div class="user-select-none m-3">Дата анализа: {{ date('d.m.Y H:m:s', strtotime($analyze->created_at))}}</div>
+        <div class="user-select-none m-3">Результат анализа: {{$analyze->predict_photo}}</div>
+        <div class="user-select-none m-3">Количество зубов с кариесом: {{$analyze->caries_count}}</div>
+        <div class="user-select-none m-3">Ссылка для скачивания: {{$analyze->predict_xml}}</div>
         @if ($analyze->user_id == Auth::id())
             <form class="d-inline" action="{{ route('analyzes.destroy', $analyze->id) }}" method="POST">
                 @csrf
