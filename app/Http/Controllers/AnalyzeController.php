@@ -53,6 +53,7 @@ class AnalyzeController extends Controller
         $data["predict_xml"] = "I LOVE PYTHON";
         $data["predict_photo"] = "WE LOVE PYTHON";
         $data["caries_count"] = 67;
+        $data["count"] = 67;
 
         $analyze = Analyze::create($data);
 

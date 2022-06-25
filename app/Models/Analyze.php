@@ -17,7 +17,8 @@ class Analyze extends Model
         'predict_photo',
         'user_id',
         'patient_id',
-        'caries_count'
+        'caries_count',
+        'count'
     ];
 
      public function user()
