@@ -48,7 +48,7 @@
             if (isset($_GET["query"])) {
                 $query = $_GET["query"];
                 $patients = \App\Models\Patient::select("id")->Where('name','like','%' . $query . '%');
-                $analyzes = \App\Models\Analyze::select("*")->WhereIn('patient_id', $patients)->get();
+                $analyzes = \App\Models\Analyze::select("*")->Where('user_id', Auth::id())->WhereIn('patient_id', $patients)->get();
                 if(count($analyzes) == 0) {
                     echo "По запросу \"" . $query . "\" ничего не найдено.";
                 }
