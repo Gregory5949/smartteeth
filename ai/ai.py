@@ -1,6 +1,5 @@
 import sys
 from detecto.utils import read_image
-from detecto.visualize import show_labeled_image
 from detecto.core import Model
 from matplotlib import pyplot as plt
 import base64
@@ -54,8 +53,8 @@ model = Model.load('trained_model.pth', labels)
 
 _image = read_image(sys.argv[1])
 
+
 _labels, _boxes, scores = model.predict(_image)
-caries_count, teeth_count = labels.count('caries'), labels.count('teeth')
+caries_count, teeth_count = _labels.count('caries'), _labels.count('teeth')
 image = byte_image(_image, _boxes, _labels)
 print(image, caries_count, teeth_count)
-show_labeled_image(_image, _boxes, _labels)

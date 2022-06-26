@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Analyze;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Process\Exception\ProcessFailedException;
@@ -37,7 +38,7 @@ class AnalyzeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request) // TODO: PYTHON, EMAIL TO PARENT
+    public function store(Request $request)
     {
         if (!Auth::check()) abort(401, "Authentication required");
 
@@ -54,31 +55,32 @@ class AnalyzeController extends Controller
 
         $data["user_id"] = Auth::id();
 
-        $process = new Process(['python3', '/home/timur/git/smartteeth/ai/ai.py', $local_file]);
+        $process = new Process(['python3', '/home/admin/web/smartteeth.nizamovtimur.ru/public_html/smartteeth/ai/ai.py', Storage::path($local_file)]);
         $process->run();
 
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
 
-        $output = $process->getOutput();
-
-        return $output;
-
-        $data["predict_photo"] = "WE LOVE PYTHON";
-        $data["caries_count"] = 67;
-        $data["count"] = 67;
+        $output = explode(" ", $process->getOutput());
+        
+        $output_image = substr($output[0], 2, -1);
+        $imageName = Str::random(26).'.'.'jpg'; 
+        Storage::disk('public')->put($imageName, base64_decode($output_image));
+        $data["predict_photo"] = Storage::url($imageName);
+        $data["caries_count"] = $output[1];
+        $data["count"] = $output[2];
 
         $analyze = Analyze::create($data);
 
         $to  = $analyze->patient->parent_email;
         $subject = "SmartTeeth. Анализ полости рта";
 
-        $message = '<p>Уважаемый(ая) ' . $analyze->patient->parent_name . '!</p> <p>Ваш ребенок ' . $analyze->patient->name . ' прошёл автоматизированную диагностику полости рта. Нейронная сеть показала следующий результат:</p>';
+        $message = '<p>Уважаемый(ая) ' . $analyze->patient->parent_name . '!</p> <p>Ваш ребенок ' . $analyze->patient->name . ' прошёл(ла) автоматизированную диагностику полости рта. Нейронная сеть показала следующий результат:</p>';
         $message .= '<ul><li>Количество распознанных зубов: ' . $analyze->count . '</li><li>Количество зубов, на которых обнаружен кариес: ' . $analyze->caries_count . '</li></ul>';
-        $message .= '<p>Подробности вы можете узнать у лечащего врача ' . $analyze->user->name . '</p>';
+        $message .= '<p>Подробности вы можете узнать у лечащего врача: ' . $analyze->user->name . '.</p>';
 
-        $headers  = "Content-type: text/html; charset=windows-1251 \r\n";
+        $headers  = "Content-type: text/html; charset=utf-8 \r\n";
         $headers .= "From: SmartTeeth <smartteeth@nizamovtimur.ru>\r\n";
         $headers .= "Reply-To: smartteeth@nizamovtimur.ru\r\n";
 
