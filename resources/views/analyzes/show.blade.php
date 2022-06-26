@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid content">
         <div class="bg-light m-2 p-2 show_predict">
-            <div class="user-select-none m-3"><strong>Результат анализа:</strong><img src="{{$analyze->predict_photo}}"  style="float: right; width:256px; height:256px"></div>
+            <div class="user-select-none m-3"><strong>Результат анализа:</strong><img src="{{$analyze->predict_photo}}"  style="float: right; height:256px"></div>
             <div class="user-select-none m-3"><strong>ФИО:</strong> {{$analyze->patient->name}}</div>
             <div class="user-select-none m-3"><strong>Дата анализа:</strong> {{ date('d.m.Y H:i:s', strtotime($analyze->created_at))}}</div>
             <div class="user-select-none m-3"><strong>Количество распознанных зубов:</strong> {{$analyze->count}}</div>
