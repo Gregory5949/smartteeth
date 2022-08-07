@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Analyze;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
+use Illuminate\Support\Facades\Http;
 
 class AnalyzeController extends Controller
 {
@@ -35,8 +37,9 @@ class AnalyzeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
+     * @throws Exception
      */
     public function store(Request $request)
     {
@@ -55,21 +58,18 @@ class AnalyzeController extends Controller
 
         $data["user_id"] = Auth::id();
 
-        $process = new Process(['python3', '/home/admin/web/smartteeth.nizamovtimur.ru/public_html/smartteeth/ai/ai.py', Storage::path($local_file)]);
-        $process->run();
-
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
+        $response = Http::get('http://127.0.0.1:8088/get', [
+            'file_path' => Storage::path($local_file)
+        ]);
+        if ($response->failed()) {
+            throw new Exception($response);
         }
 
-        $output = explode(" ", $process->getOutput());
-        
-        $output_image = substr($output[0], 2, -1);
-        $imageName = Str::random(26).'.'.'jpg'; 
-        Storage::disk('public')->put($imageName, base64_decode($output_image));
+        $imageName = Str::random(26).'.'.'jpg';
+        Storage::disk('public')->put($imageName, base64_decode($response["predict_photo"]));
         $data["predict_photo"] = Storage::url($imageName);
-        $data["caries_count"] = $output[1];
-        $data["count"] = $output[2];
+        $data["caries_count"] = $response["caries_count"];
+        $data["count"] = $response["teeth_count"];
 
         $analyze = Analyze::create($data);
 
@@ -83,8 +83,12 @@ class AnalyzeController extends Controller
         $headers  = "Content-type: text/html; charset=utf-8 \r\n";
         $headers .= "From: SmartTeeth <smartteeth@nizamovtimur.ru>\r\n";
         $headers .= "Reply-To: smartteeth@nizamovtimur.ru\r\n";
+        try {
+            mail($to, $subject, $message, $headers);
+        }
+        catch (Exception $e) {
 
-        mail($to, $subject, $message, $headers);
+        }
 
         return redirect()->route('analyzes.show', ['analyze' => $analyze]);
     }

@@ -1,6 +1,7 @@
 /node_modules
 /public/hot
-/public/trained_model.pth
+/ai/trained_model.pth
+/ai/__pycache__/
 /public/storage
 /storage/*.key
 /vendor
